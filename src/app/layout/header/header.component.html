@@ -1,0 +1,24 @@
+<mat-toolbar color="primary">
+    <span>VIB Portal</span>
+  
+    <span class="spacer"></span>
+  
+    <button mat-button [matMenuTriggerFor]="msdsMenu">MSDS</button>
+    <mat-menu #msdsMenu="matMenu">
+      <button mat-menu-item [routerLink]="'/upload-msds'">Upload MSDS</button>
+      <button mat-menu-item [routerLink]="'/manage-msds'">Manage MSDS</button>
+    </mat-menu>
+  
+    <button mat-button [matMenuTriggerFor]="baseDataMenu">Base data</button>
+    <mat-menu #baseDataMenu="matMenu">
+      <button mat-menu-item>Customers</button>
+      <button mat-menu-item>Products</button>
+    </mat-menu>
+  
+    <button mat-button [matMenuTriggerFor]="zenyaMenu">Zenya</button>
+    <mat-menu #zenyaMenu="matMenu">
+      <button mat-menu-item>List MSDS</button>
+      <button mat-menu-item>Search MSDS</button>
+    </mat-menu>
+  </mat-toolbar>
+  

@@ -1,0 +1,26 @@
+<mat-card>
+    <h2>Upload MSDS</h2>
+  
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Customer ID</mat-label>
+      <input matInput type="number" [(ngModel)]="customerId" />
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Product</mat-label>
+      <input matInput [(ngModel)]="product" />
+    </mat-form-field>
+  
+    <input type="file" (change)="onFileSelected($event)" accept=".pdf" />
+  
+    <button mat-raised-button color="primary" (click)="upload()" [disabled]="isUploading">
+      Upload
+    </button>
+  
+    <mat-progress-spinner *ngIf="isUploading" diameter="30" mode="indeterminate"></mat-progress-spinner>
+  
+    <div *ngIf="resultMessage" style="margin-top: 1rem;">
+      {{ resultMessage }}
+    </div>
+  </mat-card>
+  
