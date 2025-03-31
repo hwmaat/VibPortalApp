@@ -80,4 +80,10 @@ export class EditMsdsComponent implements OnInit {
       });
     }
   }
+  cancel(): void {
+    this.router.navigate(['/manage-msds'], {
+      queryParams: { selectedId: this.id }
+    });
+  }
+  
 }

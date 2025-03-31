@@ -3,7 +3,7 @@
   "apiBaseUrl": "https://localhost:7064/api/",
   "appBaseUrl": "https://localhost:4200/",
   "client":"Euramax",
-  "backgroundImage":"FrontImage.webp",
+  "backgroundImage":"Euramax.png",
   "logo":"AmsLineLogo-compact.png",
   "theme":"dark",
   "title":"MSDS Portal"

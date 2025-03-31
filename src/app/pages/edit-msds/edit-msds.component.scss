@@ -1,0 +1,58 @@
+:host {
+    display: block;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .edit-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+  }
+  
+  .form-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden;
+  }
+  
+  .form-body {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid #ccc;
+    background: white;
+    position: sticky;
+    bottom: 0;
+    z-index: 1;
+    padding: 1rem;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  .form-field {
+    margin-bottom: 1rem;
+  }
+
+  .grid-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem 2rem;
+    padding-right: 1rem;
+    flex: 1;
+    overflow-y: auto;
+  }
+  

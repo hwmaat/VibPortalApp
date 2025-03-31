@@ -48,7 +48,7 @@ export class UploadMsdsComponent {
 
     const formData = new FormData();
     formData.append('file', this.selectedFile);
-    if (this.supplierId) formData.append('CustomerId', this.supplierId.toString());
+    if (this.supplierId) formData.append('SupplierId', this.supplierId.toString());
     if (this.product) formData.append('Product', this.product);
 
     this.isUploading = true;

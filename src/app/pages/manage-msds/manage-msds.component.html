@@ -1,48 +1,75 @@
-<table mat-table [dataSource]="msdsList" matSort (matSortChange)="onSortChange($event)">
-  <!-- ID Column -->
-  <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header="id">ID</th>
-    <td mat-cell *matCellDef="let record">{{ record.id }}</td>
-  </ng-container>
 
-  <!-- SupplierNr Column -->
-  <ng-container matColumnDef="supplierNr">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header="supplierNr">Supplier #</th>
-    <td mat-cell *matCellDef="let record">{{ record.supplierNr }}</td>
-  </ng-container>
+<mat-progress-bar *ngIf="loading" mode="indeterminate" color="accent"></mat-progress-bar>
+<div class="filter-bar">
+  <!-- Search box -->
+  <mat-form-field appearance="outline" class="filter-box dense">
+    <mat-label>Search</mat-label>
+    <input matInput placeholder="Search..." [(ngModel)]="filterText" (keyup.enter)="onSearch()" />
+  </mat-form-field>
+  
+  <mat-form-field appearance="outline" class="filter-box dense">
+    <mat-label>Status</mat-label>
+    <mat-select [(ngModel)]="statusFilter" (selectionChange)="onSearch()">
+      <mat-option value="">All</mat-option>
+      <mat-option *ngFor="let status of statusOptions" [value]="status">{{ status }}</mat-option>
+    </mat-select>
+  </mat-form-field>
 
-  <!-- EntryDate Column -->
-  <ng-container matColumnDef="entryDate">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header="entryDate">Entry Date</th>
-    <td mat-cell *matCellDef="let record">{{ record.entryDate | date }}</td>
-  </ng-container>
+  <!-- Reset button -->
+  <button mat-raised-button color="primary" class="dense" (click)="resetFilters()">Reset</button>
+</div>
 
-  <!-- Status Column -->
-  <ng-container matColumnDef="status">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header="status">Status</th>
-    <td mat-cell *matCellDef="let record">{{ record.status }}</td>
-  </ng-container>
+<div class="table-container">
+  <table mat-table [dataSource]="msdsList" matSort (matSortChange)="onSortChange($event)">
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="id">ID</th>
+      <td mat-cell *matCellDef="let record">{{ record.id }}</td>
+    </ng-container>
 
-  <!-- Actions -->
-  <ng-container matColumnDef="actions">
-    <th mat-header-cell *matHeaderCellDef>Actions</th>
-    <td mat-cell *matCellDef="let record">
-      <span class="material-icons action-icon" (click)="startEdit(record)">edit</span>
-      <span class="material-icons action-icon" (click)="delete(record.id)">delete</span>
-      <span class="material-icons action-icon" [routerLink]="['/edit-msds', record.id]">open_in_new</span>
-    </td>
-  </ng-container>
+    <!-- SupplierNr Column -->
+    <ng-container matColumnDef="supplierNr">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="supplierNr">Supplier #</th>
+      <td mat-cell *matCellDef="let record">{{ record.supplierNr }}</td>
+    </ng-container>
 
-  <!-- Table Header and Rows -->
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr
-    mat-row
-    *matRowDef="let record; columns: displayedColumns"
-    [ngClass]="{ 'highlight-row': record.id === highlightedId }"
-    (click)="selectRow(record.id)">
-  </tr>
-</table>
+      <!-- dimset Column -->
+      <ng-container matColumnDef="dimset">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="dimset">dimset</th>
+        <td mat-cell *matCellDef="let record">{{ record.dimset }}</td>
+      </ng-container>
+      
+    <!-- EntryDate Column -->
+    <ng-container matColumnDef="entryDate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="entryDate">Entry Date</th>
+      <td mat-cell *matCellDef="let record">{{ record.entryDate | date }}</td>
+    </ng-container>
 
+    <!-- Status Column -->
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="status">Status</th>
+      <td mat-cell *matCellDef="let record">{{ record.status }}</td>
+    </ng-container>
+
+    <!-- Actions -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef stickyEnd>Actions</th>
+      <td mat-cell *matCellDef="let record" stickyEnd>
+        <span class="material-icons action-icon" (click)="delete(record.id)">delete</span>
+        <span class="material-icons action-icon" [routerLink]="['/edit-msds', record.id]">open_in_new</span>
+      </td>
+    </ng-container>
+
+    <!-- Table Header and Rows -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr
+      mat-row
+      *matRowDef="let record; columns: displayedColumns"
+      [ngClass]="{ 'highlight-row': record.id === highlightedId }"
+      (click)="selectRow(record.id)">
+    </tr>
+  </table>
+</div>
 <!-- Paginator -->
 <mat-paginator
   [length]="totalCount"

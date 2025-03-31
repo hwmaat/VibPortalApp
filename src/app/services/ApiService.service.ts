@@ -20,10 +20,15 @@ export class ApiService {
       });
   }
 
-  get<T>(endpoint: string, params?: HttpParams): Observable<T> {
+  get<T>(endpoint: string, params?: any): Observable<T> {
     const url = `${this.baseUrl$.value}/${endpoint}`;
-    return this.http.get<T>(url, { params });
+    const httpParams = params instanceof HttpParams
+      ? params
+      : new HttpParams({ fromObject: params || {} });
+  
+    return this.http.get<T>(url, { params: httpParams });
   }
+  
 
   post<T>(endpoint: string, body: any, options?: { headers?: HttpHeaders }): Observable<T> {
     const url = `${this.baseUrl$.value}/${endpoint}`;

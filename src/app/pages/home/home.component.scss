@@ -1,0 +1,24 @@
+:host {
+    display: block;
+    height: 100%;
+    width: 100%;
+    overflow: hidden; // ✅ prevent scrollbars
+  }
+  
+  .home-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0; // remove extra spacing
+    overflow: hidden;
+  }
+  
+  .home-image {
+    max-width: 80vw;
+    max-height: 80vh;
+    object-fit: contain;
+    display: block;
+  }
+  
