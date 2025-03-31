@@ -6,7 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { HttpClient } from '@angular/common/http';
+import { ApiService } from '../../services/ApiService.service';
 
 @Component({
   standalone: true,
@@ -25,13 +25,13 @@ import { HttpClient } from '@angular/common/http';
   ]
 })
 export class UploadMsdsComponent {
-  customerId?: number;
+  supplierId?: number;
   product?: string;
   selectedFile: File | null = null;
   isUploading = false;
   resultMessage = '';
 
-  constructor(private http: HttpClient) {}
+  constructor(private api: ApiService) {}
 
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -48,18 +48,18 @@ export class UploadMsdsComponent {
 
     const formData = new FormData();
     formData.append('file', this.selectedFile);
-    if (this.customerId) formData.append('CustomerId', this.customerId.toString());
+    if (this.supplierId) formData.append('CustomerId', this.supplierId.toString());
     if (this.product) formData.append('Product', this.product);
 
     this.isUploading = true;
     this.resultMessage = '';
 
-    this.http.post('/api/upload/upload', formData).subscribe({
+    this.api.post('upload/upload', formData).subscribe({
       next: (res: any) => {
         this.resultMessage = res.message;
         this.isUploading = false;
       },
-      error: (err) => {
+      error: (err: { error: { error: string; }; }) => {
         this.resultMessage = err.error?.error || 'Upload failed.';
         this.isUploading = false;
       }

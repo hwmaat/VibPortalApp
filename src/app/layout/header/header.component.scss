@@ -1,11 +1,19 @@
 .spacer {
     flex: 1 1 auto;
   }
+
+
   mat-toolbar {
     background-color: #1976d2; // Material blue
     color: white;
+  
+    span {
+      color: white;
+      font-weight: 500;
+    }
   
     button {
       color: white;
     }
   }
+  

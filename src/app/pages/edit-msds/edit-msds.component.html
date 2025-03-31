@@ -1,0 +1,12 @@
+<h2>Edit MSDS Record</h2>
+
+<form [formGroup]="editForm" (ngSubmit)="save()">
+  <div *ngFor="let key of editForm.controls | keyvalue">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>{{ key.key }}</mat-label>
+      <input matInput [formControl]="key.value" />
+    </mat-form-field>
+  </div>
+
+  <button mat-raised-button color="primary" type="submit">Save</button>
+</form>

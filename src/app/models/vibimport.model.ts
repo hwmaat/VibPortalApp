@@ -1,0 +1,30 @@
+export interface VibImport {
+    id: number;
+    supplierNr: string | null;
+    dimset: string | null;
+    entryDate: string | null;
+    revisionDate: string | null;
+    cas_Number: string | null;
+    cas_Percentages: string | null;
+    h_Number: string | null;
+    h_Cat: string | null;
+    adr_Un_Nr: string | null;
+    adr_CargoName: string | null;
+    adr_TransportHazardClass: string | null;
+    adr_PackagingGroup: string | null;
+    adr_EnvironmentHazards: string | null;
+    adr_ExtraInfo: string | null;
+    imdg_UnNumber: string | null;
+    imdg_CargoName: string | null;
+    imdg_TransportHazardClass: string | null;
+    imdg_PackagingGroup: string | null;
+    imdg_EnvironmentHazards: string | null;
+    imdg_ExtraInfo: string | null;
+    extraInfoTunnelCode: string | null;
+    flashPoint: string | null;
+    ems_Fire: string | null;
+    ems_Spillage: string | null;
+    userName: string | null;
+    egNumber: string | null;
+    status: string | null;
+}

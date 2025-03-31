@@ -1,24 +1,31 @@
 <mat-toolbar color="primary">
-    <span>VIB Portal</span>
-  
-    <span class="spacer"></span>
-  
-    <button mat-button [matMenuTriggerFor]="msdsMenu">MSDS</button>
-    <mat-menu #msdsMenu="matMenu">
+  <span *ngIf="title$ | async as title">{{ title }}</span>
+  <span class="spacer"></span>
+
+  <!-- MSDS Menu -->
+  <app-auto-open-menu>
+    <button mat-button trigger>MSDS</button>
+    <ng-container content>
       <button mat-menu-item [routerLink]="'/upload-msds'">Upload MSDS</button>
       <button mat-menu-item [routerLink]="'/manage-msds'">Manage MSDS</button>
-    </mat-menu>
-  
-    <button mat-button [matMenuTriggerFor]="baseDataMenu">Base data</button>
-    <mat-menu #baseDataMenu="matMenu">
+    </ng-container>
+  </app-auto-open-menu>
+
+  <!-- Base data Menu -->
+  <app-auto-open-menu>
+    <button mat-button trigger>Base data</button>
+    <ng-container content>
       <button mat-menu-item>Customers</button>
       <button mat-menu-item>Products</button>
-    </mat-menu>
-  
-    <button mat-button [matMenuTriggerFor]="zenyaMenu">Zenya</button>
-    <mat-menu #zenyaMenu="matMenu">
+    </ng-container>
+  </app-auto-open-menu>
+
+  <!-- Zenya Menu -->
+  <app-auto-open-menu>
+    <button mat-button trigger>Zenya</button>
+    <ng-container content>
       <button mat-menu-item>List MSDS</button>
       <button mat-menu-item>Search MSDS</button>
-    </mat-menu>
-  </mat-toolbar>
-  
+    </ng-container>
+  </app-auto-open-menu>
+</mat-toolbar>
