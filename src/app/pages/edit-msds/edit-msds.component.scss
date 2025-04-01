@@ -4,6 +4,12 @@
     overflow: hidden;
   }
   
+.groupheader {
+    color: chocolate;
+    font-size: large;
+    font-weight: 500;
+  }
+  
   .edit-container {
     display: flex;
     flex-direction: column;
@@ -49,10 +55,14 @@
 
   .grid-form {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
     gap: 1rem 2rem;
     padding-right: 1rem;
     flex: 1;
     overflow-y: auto;
+    border-bottom: 1px solid lightgray;
   }
   
+  ::ng-deep .mdc-line-ripple {
+    display: none
+  }

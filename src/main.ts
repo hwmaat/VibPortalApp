@@ -10,6 +10,7 @@ import { Observable, tap } from 'rxjs';
 import { IAppConfig } from './app/models/app-config.model';
 import { environment } from './environments/environment';
 import { Globals } from './app/services/globals.service';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 if (environment.production) {
   enableProdMode();
@@ -33,6 +34,7 @@ bootstrapApplication(AppComponent, {
     provideAnimations(),
     provideHttpClient(),
     { provide: APP_INITIALIZER, useFactory: configurationFactory, multi: true, deps: [HttpClient, Globals]},
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { floatLabel: 'always' } }
   ]
 });
 
