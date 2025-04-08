@@ -1,0 +1,10 @@
+<mat-form-field appearance="fill" class="full-width">
+  <mat-label>Zoekterm</mat-label>
+  <input matInput [(ngModel)]="query" />
+</mat-form-field>
+
+<button mat-raised-button color="primary" (click)="search()">Zoeken</button>
+
+<div *ngIf="isLoading()">Bezig met zoeken...</div>
+<div *ngIf="result()">Gevonden document: {{ result() }}</div>
+<div *ngIf="error()" class="error">{{ error() }}</div>

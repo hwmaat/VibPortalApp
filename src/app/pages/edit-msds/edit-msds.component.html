@@ -6,19 +6,19 @@
       <!-- MSDS -->
       <h3 class="groupheader">MSDS</h3>
       <div class="grid-form">
-        <mat-form-field appearance="fill" class="full-width" ><mat-label>SupplierNr</mat-label><input matInput formControlName="supplierNr" /></mat-form-field>
+        <mat-form-field appearance="fill" class="full-width" ><mat-label>suppl_Nr</mat-label><input matInput formControlName="suppl_Nr" /></mat-form-field>
         <mat-form-field appearance="fill" class="full-width"><mat-label>Dimset</mat-label><input matInput formControlName="dimset" /></mat-form-field>
         <mat-form-field appearance="fill" class="full-width">
           <mat-label>Entry Date</mat-label>
-          <input matInput [matDatepicker]="entryDatePicker" formControlName="entryDate">
-          <mat-datepicker-toggle matSuffix [for]="entryDatePicker"></mat-datepicker-toggle>
-          <mat-datepicker #entryDatePicker></mat-datepicker>
+          <input matInput [matDatepicker]="entry_DatePicker" formControlName="entry_Date">
+          <mat-datepicker-toggle matSuffix [for]="entry_DatePicker"></mat-datepicker-toggle>
+          <mat-datepicker #entry_DatePicker></mat-datepicker>
         </mat-form-field>
         <mat-form-field appearance="fill" class="full-width">
           <mat-label>Revision Date</mat-label>
-          <input matInput [matDatepicker]="revisionDatePicker" formControlName="revisionDate">
-          <mat-datepicker-toggle matSuffix [for]="revisionDatePicker"></mat-datepicker-toggle>
-          <mat-datepicker #revisionDatePicker></mat-datepicker>
+          <input matInput [matDatepicker]="rev_DatePicker" formControlName="rev_Date">
+          <mat-datepicker-toggle matSuffix [for]="rev_DatePicker"></mat-datepicker-toggle>
+          <mat-datepicker #rev_DatePicker></mat-datepicker>
         </mat-form-field>
 
 
@@ -31,11 +31,11 @@
       <h3 class="groupheader">CAS</h3>
       <div class="grid-form">
         <mat-form-field appearance="fill" class="full-width">
-          <mat-label>CAS Number</mat-label><input matInput formControlName="cas_Number" /></mat-form-field>
-        <mat-form-field appearance="fill" class="full-width"><mat-label>CAS Percentages</mat-label><input matInput formControlName="cas_Percentages" /></mat-form-field>
+          <mat-label>CAS Number</mat-label><input matInput formControlName="cas_Nr" /></mat-form-field>
+        <mat-form-field appearance="fill" class="full-width"><mat-label>CAS Percentages</mat-label><input matInput formControlName="cas_Perc" /></mat-form-field>
         <mat-form-field appearance="fill" class="full-width">
-          <mat-label>EG Number</mat-label><input matInput formControlName="egNumber" /></mat-form-field>
-        <mat-form-field appearance="fill" class="full-width"><mat-label>H Number</mat-label><input matInput formControlName="h_Number" /></mat-form-field>
+          <mat-label>EG Number</mat-label><input matInput formControlName="eg_Nr" /></mat-form-field>
+        <mat-form-field appearance="fill" class="full-width"><mat-label>H Number</mat-label><input matInput formControlName="h_Nr" /></mat-form-field>
         <mat-form-field appearance="fill" class="full-width"><mat-label>H Category</mat-label><input matInput formControlName="h_Cat" /></mat-form-field>
       </div>
 
@@ -43,22 +43,22 @@
       <h3 class="groupheader">Transport - ADR</h3>
       <div class="grid-form">
         <mat-form-field appearance="fill" class="full-width"><mat-label>UN Nummer</mat-label><input matInput formControlName="adr_Un_Nr" /></mat-form-field>
-        <mat-form-field appearance="fill" class="full-width"><mat-label>Cargo Name</mat-label><input matInput formControlName="adr_CargoName" /></mat-form-field>
-        <mat-form-field appearance="fill" class="full-width"><mat-label>Transport Hazard Class</mat-label><input matInput formControlName="adr_TransportHazardClass" /></mat-form-field>
-        <mat-form-field appearance="fill" class="full-width"><mat-label>Packaging Group</mat-label><input matInput formControlName="adr_PackagingGroup" /></mat-form-field>
-        <mat-form-field appearance="fill" class="full-width"><mat-label>Environment Hazards</mat-label><input matInput formControlName="adr_EnvironmentHazards" /></mat-form-field>
+        <mat-form-field appearance="fill" class="full-width"><mat-label>Cargo Name</mat-label><input matInput formControlName="adr_Cargo_Name" /></mat-form-field>
+        <mat-form-field appearance="fill" class="full-width"><mat-label>Transport Hazard Class</mat-label><input matInput formControlName="adr_TransportHazard_Class" /></mat-form-field>
+        <mat-form-field appearance="fill" class="full-width"><mat-label>Packaging Group</mat-label><input matInput formControlName="adr_Packaging_Group" /></mat-form-field>
+        <mat-form-field appearance="fill" class="full-width"><mat-label>Environment Hazards</mat-label><input matInput formControlName="adr_Environment_Hazards" /></mat-form-field>
         <mat-form-field appearance="fill" class="full-width"><mat-label>Extra Info</mat-label><input matInput formControlName="adr_ExtraInfo" /></mat-form-field>
-        <mat-form-field appearance="fill" class="full-width"><mat-label>Tunnelcode</mat-label><input matInput formControlName="extraInfoTunnelCode" /></mat-form-field>
+        <mat-form-field appearance="fill" class="full-width"><mat-label>Tunnelcode</mat-label><input matInput formControlName="extraInfo_TunnelCode" /></mat-form-field>
       </div>
 
       <!-- Transport IMDG -->
       <h3 class="groupheader">Transport - IMDG</h3>
       <div class="grid-form">
-        <mat-form-field appearance="fill" class="full-width"><mat-label>UN Nummer</mat-label><input matInput formControlName="imdg_UnNumber" /></mat-form-field>
-        <mat-form-field appearance="fill" class="full-width"><mat-label>Cargo Name</mat-label><input matInput formControlName="imdg_CargoName" /></mat-form-field>
-        <mat-form-field appearance="fill" class="full-width"><mat-label>Transport Hazard Class</mat-label><input matInput formControlName="imdg_TransportHazardClass" /></mat-form-field>
-        <mat-form-field appearance="fill" class="full-width"><mat-label>Packaging Group</mat-label><input matInput formControlName="imdg_PackagingGroup" /></mat-form-field>
-        <mat-form-field appearance="fill" class="full-width"><mat-label>Environment Hazards</mat-label><input matInput formControlName="imdg_EnvironmentHazards" /></mat-form-field>
+        <mat-form-field appearance="fill" class="full-width"><mat-label>UN Nummer</mat-label><input matInput formControlName="imdg_Un_Nr" /></mat-form-field>
+        <mat-form-field appearance="fill" class="full-width"><mat-label>Cargo Name</mat-label><input matInput formControlName="imdg_Cargo_Name" /></mat-form-field>
+        <mat-form-field appearance="fill" class="full-width"><mat-label>Transport Hazard Class</mat-label><input matInput formControlName="imdg_TransportHazard_Class" /></mat-form-field>
+        <mat-form-field appearance="fill" class="full-width"><mat-label>Packaging Group</mat-label><input matInput formControlName="imdg_Packaging_Group" /></mat-form-field>
+        <mat-form-field appearance="fill" class="full-width"><mat-label>Environment Hazards</mat-label><input matInput formControlName="imdg_Environment_Hazards" /></mat-form-field>
         <mat-form-field appearance="fill" class="full-width"><mat-label>Extra Info</mat-label><input matInput formControlName="imdg_ExtraInfo" /></mat-form-field>
       </div>
 

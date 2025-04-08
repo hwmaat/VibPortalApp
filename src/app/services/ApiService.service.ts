@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, Observable, filter } from 'rxjs';
+import { BehaviorSubject, Observable, filter, switchMap, take } from 'rxjs';
 import { Globals } from './globals.service';
 import { IAppConfig } from '../models/app-config.model';
 
@@ -35,6 +35,12 @@ export class ApiService {
     return this.http.post<T>(url, body, options);
   }
 
+  postPaged<T>(endpoint: string, body: any): Observable<T> {
+    return this.baseUrl$.pipe(
+      take(1),
+      switchMap(baseUrl => this.http.post<T>(`${baseUrl}/${endpoint}`, body))
+    );
+  }
   put<T>(endpoint: string, body: any, options?: { headers?: HttpHeaders }): Observable<T> {
     const url = `${this.baseUrl$.value}/${endpoint}`;
     return this.http.put<T>(url, body, options);
@@ -43,5 +49,14 @@ export class ApiService {
   delete<T>(endpoint: string, options?: { params?: HttpParams }): Observable<T> {
     const url = `${this.baseUrl$.value}/${endpoint}`;
     return this.http.delete<T>(url, options);
+  }
+
+  getZenyaSuggestion(query: string) {
+    return this.baseUrl$.pipe(
+      take(1),
+      switchMap(baseUrl =>
+        this.http.get<string>(`${baseUrl}zenya/search?query=${encodeURIComponent(query)}`)
+      )
+    );
   }
 }

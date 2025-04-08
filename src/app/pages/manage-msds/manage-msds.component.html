@@ -27,10 +27,10 @@
       <td mat-cell *matCellDef="let record">{{ record.id }}</td>
     </ng-container>
 
-    <!-- SupplierNr Column -->
-    <ng-container matColumnDef="supplierNr">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header="supplierNr">Supplier #</th>
-      <td mat-cell *matCellDef="let record">{{ record.supplierNr }}</td>
+    <!-- suppl_Nr Column -->
+    <ng-container matColumnDef="suppl_Nr">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="suppl_Nr">Supplier #</th>
+      <td mat-cell *matCellDef="let record">{{ record.suppl_Nr }}</td>
     </ng-container>
 
       <!-- dimset Column -->
@@ -39,10 +39,10 @@
         <td mat-cell *matCellDef="let record">{{ record.dimset }}</td>
       </ng-container>
       
-    <!-- EntryDate Column -->
-    <ng-container matColumnDef="entryDate">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header="entryDate">Entry Date</th>
-      <td mat-cell *matCellDef="let record">{{ record.entryDate | date }}</td>
+    <!-- entry_Date Column -->
+    <ng-container matColumnDef="entry_Date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="entry_Date">Entry Date</th>
+      <td mat-cell *matCellDef="let record">{{ record.entry_Date | date }}</td>
     </ng-container>
 
     <!-- Status Column -->

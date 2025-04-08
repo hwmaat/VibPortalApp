@@ -14,6 +14,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core'
+import { VibPagedResult } from '../../models/VibPagedResult.interface';
 
 @Component({
   standalone: true,
@@ -33,11 +34,11 @@ export class ManageMsdsComponent implements OnInit {
   msdsList: VibImport[] = [];
 
   highlightedId: number | null = null;
-  displayedColumns = ['id', 'supplierNr', 'dimset', 'entryDate', 'status', 'actions'];
+  displayedColumns = ['id', 'suppl_Nr', 'dimset', 'entry_Date', 'status', 'actions'];
   page = 1;
   pageSize = 25;
   totalCount = 0;
-  sortColumn = 'entryDate';
+  sortColumn = 'entry_Date';
   sortDirection: 'asc' | 'desc' = 'desc';
   loading = false;
   filterText = '';
@@ -58,8 +59,8 @@ export class ManageMsdsComponent implements OnInit {
 
   loadData(): void {
     this.loading = true;
-
-    const params = {
+  
+    const body = {
       page: this.page,
       pageSize: this.pageSize,
       sortColumn: this.sortColumn,
@@ -67,11 +68,11 @@ export class ManageMsdsComponent implements OnInit {
       filter: this.filterText,
       status: this.statusFilter
     };
-
-    this.api.get<{ totalCount: number; data: VibImport[] }>('managemsds', params).subscribe({
+  
+    this.api.postPaged<VibPagedResult<VibImport>>('managemsds/paged', body).subscribe({
       next: result => {
-        this.msdsList = result.data;
-        this.totalCount = result.totalCount;
+        this.msdsList = result.records;
+        this.totalCount = result.totalRecords;
         this.loading = false;
         console.log('manage-msds.component ==> this.msdsList', result);
       },
