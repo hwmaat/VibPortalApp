@@ -1,0 +1,148 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+  }
+  
+  
+  
+  .filter-bar {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .table-container {
+    max-height: calc(100vh - 240px);
+    overflow-y: auto;
+    overflow-x: auto;
+    border: 1px solid #ddd;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .mat-header-row {
+    position: sticky;
+    top: 0;
+    background: #fff;
+    z-index: 10;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .mat-header-cell {
+    background: #fff;
+    font-weight: bold;
+  }
+  
+  .mat-header-cell,
+  .mat-cell {
+    min-width: 120px;
+  }
+  
+  .mat-header-cell[stickyEnd],
+  .mat-cell[stickyEnd] {
+    position: sticky;
+    right: 0;
+    background: white;
+    z-index: 10;
+    border-left: 1px solid #ddd;
+  }
+  
+  mat-paginator {
+    position: sticky;
+    bottom: 0;
+    background: white;
+    z-index: 10;
+    padding-top: 8px;
+  }
+  
+  .table-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  
+  th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #f3f3f3;
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  th:hover {
+    background-color: #e0e0e0;
+  }
+  
+  tr:hover {
+    background-color: #f9f9f9;
+  }
+  
+  input[type="text"], input[type="date"] {
+    width: 100%;
+    padding: 6px;
+    box-sizing: border-box;
+  }
+  
+  .action-icon {
+    cursor: pointer;
+    margin-right: 8px;
+    font-size: 20px;
+    color: #1976d2;
+    vertical-align: middle;
+  }
+  
+  .action-icon:hover {
+    color: #0d47a1;
+  }
+  
+  .highlight-row {
+    background-color: #e0f7fa !important;
+  }
+  
+  
+  .filter-box {
+    min-width: 200px;
+  }
+  
+  .dense {
+    height: 42px !important;
+    font-size: 13px;
+  }
+  
+  .dense.mat-form-field {
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  
+  .dense .mat-form-field-wrapper {
+    padding-bottom: 0 !important;
+  }
+  
+  .dense .mat-form-field-infix {
+    padding: 0.25em 0 !important;
+  }
+  
+  .dense button.mat-raised-button {
+    line-height: 1.2;
+    min-height: 36px;
+    padding: 4px 12px;
+    font-size: 13px;
+  }

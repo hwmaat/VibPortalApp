@@ -1,0 +1,84 @@
+<div class="edit-container">
+    <h2>Edit Euravib Record {{rowNum}}</h2>
+<!--     <div class="rownum-display" *ngIf="rowNum !== undefined">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Row Number</mat-label>
+        <input matInput [value]="rowNum" readonly />
+      </mat-form-field>
+    </div> -->
+
+    <form [formGroup]="editForm" (ngSubmit)="save()" class="form-wrapper">
+      <div class="form-body">
+  
+        <!-- MSDS -->
+        <h3 class="groupheader">MSDS</h3>
+        <div class="grid-form">
+          <mat-form-field appearance="fill" class="full-width"><mat-label>Supplier Nr</mat-label><input matInput formControlName="suppl_Nr" /></mat-form-field>
+          <mat-form-field appearance="fill" class="full-width"><mat-label>Dimset</mat-label><input matInput formControlName="dimset" /></mat-form-field>
+  
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Entry Date</mat-label>
+            <input matInput [matDatepicker]="entryDatePicker" formControlName="entry_Date">
+            <mat-datepicker-toggle matSuffix [for]="entryDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #entryDatePicker></mat-datepicker>
+          </mat-form-field>
+  
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Revision Date</mat-label>
+            <input matInput [matDatepicker]="revDatePicker" formControlName="rev_Date">
+            <mat-datepicker-toggle matSuffix [for]="revDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #revDatePicker></mat-datepicker>
+          </mat-form-field>
+  
+          <mat-form-field appearance="fill" class="full-width"><mat-label>User Name</mat-label><input matInput formControlName="user" /></mat-form-field>
+        </div>
+  
+        <!-- CAS -->
+        <h3 class="groupheader">CAS</h3>
+        <div class="grid-form">
+          <mat-form-field appearance="fill" class="full-width"><mat-label>CAS Number</mat-label><input matInput formControlName="cas_Nr" /></mat-form-field>
+          <mat-form-field appearance="fill" class="full-width"><mat-label>CAS Percentages</mat-label><input matInput formControlName="cas_Perc" /></mat-form-field>
+          <mat-form-field appearance="fill" class="full-width"><mat-label>EG Number</mat-label><input matInput formControlName="eg_Nr" /></mat-form-field>
+          <mat-form-field appearance="fill" class="full-width"><mat-label>H Number</mat-label><input matInput formControlName="h_Nr" /></mat-form-field>
+          <mat-form-field appearance="fill" class="full-width"><mat-label>H Category</mat-label><input matInput formControlName="h_Cat" /></mat-form-field>
+        </div>
+  
+        <!-- Transport - ADR -->
+        <h3 class="groupheader">Transport - ADR</h3>
+        <div class="grid-form">
+          <mat-form-field appearance="fill" class="full-width"><mat-label>UN Nummer</mat-label><input matInput formControlName="adr_Un_Nr" /></mat-form-field>
+          <mat-form-field appearance="fill" class="full-width"><mat-label>Cargo Name</mat-label><input matInput formControlName="adr_Cargo_Name" /></mat-form-field>
+          <mat-form-field appearance="fill" class="full-width"><mat-label>Transport Hazard Class</mat-label><input matInput formControlName="adr_TransportHazard_Class" /></mat-form-field>
+          <mat-form-field appearance="fill" class="full-width"><mat-label>Packaging Group</mat-label><input matInput formControlName="adr_Packing_Group" /></mat-form-field>
+          <mat-form-field appearance="fill" class="full-width"><mat-label>Environment Hazards</mat-label><input matInput formControlName="adr_Environment_Hazards" /></mat-form-field>
+          <mat-form-field appearance="fill" class="full-width"><mat-label>Extra Info</mat-label><input matInput formControlName="adr_ExtraInfo" /></mat-form-field>
+          <mat-form-field appearance="fill" class="full-width"><mat-label>Tunnelcode</mat-label><input matInput formControlName="extraInfo_TunnelCode" /></mat-form-field>
+        </div>
+  
+        <!-- Transport - IMDG -->
+        <h3 class="groupheader">Transport - IMDG</h3>
+        <div class="grid-form">
+          <mat-form-field appearance="fill" class="full-width"><mat-label>UN Nummer</mat-label><input matInput formControlName="imdg_Un_Nr" /></mat-form-field>
+          <mat-form-field appearance="fill" class="full-width"><mat-label>Cargo Name</mat-label><input matInput formControlName="imdg_Cargo_Name" /></mat-form-field>
+          <mat-form-field appearance="fill" class="full-width"><mat-label>Transport Hazard Class</mat-label><input matInput formControlName="imdg_TransportHazard_Class" /></mat-form-field>
+          <mat-form-field appearance="fill" class="full-width"><mat-label>Packaging Group</mat-label><input matInput formControlName="imdg_Packing_Group" /></mat-form-field>
+          <mat-form-field appearance="fill" class="full-width"><mat-label>Environment Hazards</mat-label><input matInput formControlName="imdg_Environment_Hazards" /></mat-form-field>
+          <mat-form-field appearance="fill" class="full-width"><mat-label>Extra Info</mat-label><input matInput formControlName="imdg_ExtraInfo" /></mat-form-field>
+        </div>
+  
+        <!-- Other -->
+        <h3 class="groupheader">Other</h3>
+        <div class="grid-form">
+          <mat-form-field appearance="fill" class="full-width"><mat-label>Flash Point</mat-label><input matInput formControlName="flashPoint" /></mat-form-field>
+          <mat-form-field appearance="fill" class="full-width"><mat-label>EMS Fire</mat-label><input matInput formControlName="ems_Fire" /></mat-form-field>
+          <mat-form-field appearance="fill" class="full-width"><mat-label>EMS Spillage</mat-label><input matInput formControlName="ems_Spillage" /></mat-form-field>
+        </div>
+      </div>
+  
+      <div class="form-actions">
+        <button mat-stroked-button type="button" color="warn" (click)="cancel()">Cancel</button>
+        <button mat-raised-button color="primary" type="submit">Save</button>
+      </div>
+    </form>
+  </div>
+  

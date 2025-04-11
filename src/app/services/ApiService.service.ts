@@ -59,4 +59,13 @@ export class ApiService {
       )
     );
   }
+
+  searchZenya<T>(params?: any): Observable<T> {
+    const url = `${this.baseUrl$.value}/Zenya/search-document`;
+    const httpParams = params instanceof HttpParams
+      ? params
+      : new HttpParams({ fromObject: params || {} });
+  
+    return this.http.get<T>(url, { params: httpParams });
+  }
 }

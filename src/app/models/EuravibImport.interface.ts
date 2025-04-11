@@ -1,5 +1,5 @@
-export interface VibImport {
-    id: number;
+export interface EuravibImport {
+    rowNum: number | null;
     suppl_Nr: string | null;
     dimset: string | null;
     entry_Date: string | null;
@@ -24,7 +24,8 @@ export interface VibImport {
     flashPoint: string | null;
     ems_Fire: string | null;
     ems_Spillage: string | null;
-    userName: string | null;
+    user: string | null;
     eg_Nr: string | null;
-    status: string | null;
 }
+
+export type EuravibEditModel = Omit<EuravibImport, 'rowNum'>;

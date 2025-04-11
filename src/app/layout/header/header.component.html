@@ -2,12 +2,30 @@
   <span *ngIf="title$ | async as title">{{ title }}</span>
   <span class="spacer"></span>
 
+
+  <button mat-button [routerLink]="'/'">Home</button>
+
   <!-- MSDS Menu -->
   <app-auto-open-menu>
-    <button mat-button trigger>MSDS</button>
+    <button mat-button trigger>Vibs</button>
     <ng-container content>
-      <button mat-menu-item [routerLink]="'/upload-msds'">Upload MSDS</button>
-      <button mat-menu-item [routerLink]="'/manage-msds'">Manage MSDS</button>
+      <button mat-menu-item [routerLink]="'/upload-msds'">Upload Vib</button>
+      <button mat-menu-item [routerLink]="'/manage-msds'">Manage Vib</button>
+    </ng-container>
+  </app-auto-open-menu>
+
+  <app-auto-open-menu>
+    <button mat-button trigger>B2B Order bevestiging</button>
+    <ng-container content>
+      <button mat-menu-item [routerLink]="'/B2B Mailbox'">Upload Vib</button>
+      <button mat-menu-item [routerLink]="'/Orderbevestigingen'">Manage Vib</button>
+    </ng-container>
+  </app-auto-open-menu>
+
+  <app-auto-open-menu>
+    <button mat-button trigger>Db2-Euravib</button>
+    <ng-container content>
+      <button mat-menu-item [routerLink]="'/manage-euravib'">Manage Euravib</button>
     </ng-container>
   </app-auto-open-menu>
 
@@ -24,9 +42,7 @@
   <app-auto-open-menu>
     <button mat-button trigger>Zenya</button>
     <ng-container content>
-      <button mat-menu-item>List MSDS</button>
-      <button mat-menu-item>Search MSDS</button>
-      <a mat-button routerLink="/zenya-search">Zenya</a>
+      <a mat-button routerLink="/zenya-search">Zenya search</a>
     </ng-container>
   </app-auto-open-menu>
 </mat-toolbar>
