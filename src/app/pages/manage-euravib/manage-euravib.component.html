@@ -24,9 +24,9 @@
   <table mat-table [dataSource]="euravibList" matSort (matSortChange)="onSortChange($event)">
 
     <!-- Supplier Nr -->
-    <ng-container matColumnDef="rowNum">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header="rowNum">RowNum #</th>
-      <td mat-cell *matCellDef="let record">{{ record.rowNum }}</td>
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="id">Id #</th>
+      <td mat-cell *matCellDef="let record">{{ record.id }}</td>
     </ng-container>
 
     <!-- Supplier Nr -->
@@ -68,7 +68,7 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef stickyEnd>Actions</th>
       <td mat-cell *matCellDef="let record" stickyEnd>
-        <span class="material-icons action-icon" (click)="delete(record.suppl_Nr, record.rev_Date, record.dimset)">delete</span>
+        <span class="material-icons action-icon" (click)="delete(record.id)">delete</span>
         <!-- <span class="material-icons action-icon" [routerLink]="['/edit-euravib', record.suppl_Nr, record.rev_Date, record.dimset]">open_in_new</span> -->
         <span class="material-icons action-icon" (click)="openEdit(record)">open_in_new</span>
       </td>

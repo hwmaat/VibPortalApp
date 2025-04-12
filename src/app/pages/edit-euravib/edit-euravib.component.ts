@@ -10,7 +10,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
-import { EuravibEditModel, EuravibImport } from '../../models/EuravibImport.interface';
+import { EuravibImport } from '../../models/EuravibImport.model';
+
 
 export const MY_DATE_FORMATS = {
   parse: { dateInput: 'DD/MM/YYYY' },
@@ -48,19 +49,14 @@ export class EditEuravibComponent implements OnInit {
   private api = inject(ApiService);
   private fb = inject(FormBuilder);
 
-  //editForm!: FormGroup<{ [K in keyof Omit<EuravibImport, 'rowNum'>]: FormControl<EuravibImport[K] | null> }>;
-  editForm!: FormGroup<{ [K in keyof EuravibEditModel]: FormControl<EuravibEditModel[K] | null> }>;
-  suppl_Nr!: string;
-  rev_Date!: string;
-  dimset!: string;
-  rowNum?: number = history.state?.rowNum;
+  editForm!: FormGroup<{ [K in keyof EuravibImport]: FormControl<EuravibImport[K] | null> }>;
+  id!: number;
 
   ngOnInit(): void {
-    this.suppl_Nr = this.route.snapshot.paramMap.get('suppl_Nr')!;
-    this.rev_Date = this.route.snapshot.paramMap.get('rev_Date')!;
-    this.dimset = this.route.snapshot.paramMap.get('dimset')!;
+    this.id = parseInt(this.route.snapshot.paramMap.get('id') || '0', 10);
 
     this.editForm = this.fb.group({
+      id: this.fb.control(0),
       suppl_Nr: this.fb.control(''),
       rev_Date: this.fb.control(''),
       dimset: this.fb.control(''),
@@ -90,7 +86,7 @@ export class EditEuravibComponent implements OnInit {
     });
 
 
-    this.api.get<EuravibImport>(`euravib/${this.suppl_Nr}/${this.rev_Date}/${this.dimset}`).subscribe(record => {
+    this.api.get<EuravibImport>(`euravib/${this.id}`).subscribe(record => {
       this.editForm.patchValue(record);
     });
  
@@ -100,7 +96,7 @@ export class EditEuravibComponent implements OnInit {
 
   save(): void {
     if (this.editForm.valid) {
-      this.api.put(`euravib/${this.suppl_Nr}/${this.rev_Date}/${this.dimset}`, this.editForm.value).subscribe(() => {
+      this.api.put(`euravib/${this.id}`, this.editForm.value).subscribe(() => {
         this.router.navigate(['/manage-euravib']);
       });
     }

@@ -1,5 +1,5 @@
 export interface EuravibImport {
-    rowNum: number | null;
+    id: number | null;
     suppl_Nr: string | null;
     dimset: string | null;
     entry_Date: string | null;
@@ -28,4 +28,3 @@ export interface EuravibImport {
     eg_Nr: string | null;
 }
 
-export type EuravibEditModel = Omit<EuravibImport, 'rowNum'>;

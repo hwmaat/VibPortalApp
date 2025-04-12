@@ -15,7 +15,7 @@ import { RouterModule, ActivatedRoute, Router } from '@angular/router';
 
 import { ApiService } from '../../services/ApiService.service';
 import { VibPagedResult } from '../../models/VibPagedResult.interface';
-import { EuravibImport } from '../../models/EuravibImport.interface';
+import { EuravibImport } from '../../models/EuravibImport.model';
 
 @Component({
   standalone: true,
@@ -46,7 +46,7 @@ export class ManageEuravibComponent implements OnInit {
 
   euravibList: EuravibImport[] = [];
   highlightedKey: string | null = null;
-  displayedColumns = ['rowNum', 'suppl_Nr', 'dimset', 'rev_Date', 'entry_Date', 'adr_ExtraInfo', 'user', 'actions'];
+  displayedColumns = ['id', 'suppl_Nr', 'dimset', 'rev_Date', 'entry_Date', 'adr_ExtraInfo', 'user', 'actions'];
   page = 1;
   pageSize = 12;
   totalCount = 0;
@@ -135,14 +135,13 @@ export class ManageEuravibComponent implements OnInit {
     //   record.dimset
     // ]);
     this.router.navigate(
-      ['/edit-euravib', record.suppl_Nr, record.rev_Date, record.dimset],
-      { state: { rowNum: record.rowNum } }
+      ['/edit-euravib', record.id]
     );
   }
 
 
-  delete(suppl_Nr: string | null, rev_Date: string | null, dimset: string | null): void {
-    if (!suppl_Nr || !rev_Date || !dimset) {
+  delete(id: number | null): void {
+    if (!id) {
       console.warn('Invalid record key — cannot delete');
       return;
     }
@@ -151,8 +150,8 @@ export class ManageEuravibComponent implements OnInit {
       return;
     }
   
-    const encodedDate = encodeURIComponent(rev_Date); // in case it's in ISO format
-    this.api.delete(`euravib/${suppl_Nr}/${encodedDate}/${dimset}`).subscribe({
+
+    this.api.delete(`euravib/${id}`).subscribe({
       next: () => {
         this.loadData(); // Refresh table after delete
       },
