@@ -1,5 +1,5 @@
 <div class="edit-container">
-  <h2>Edit MSDS Record</h2>
+  <h2>Edit SQLserver Vib Record {{id}}</h2>
 
   <form [formGroup]="editForm" (ngSubmit)="save()" class="form-wrapper">
     <div class="form-body">
@@ -45,7 +45,7 @@
         <mat-form-field appearance="fill" class="full-width"><mat-label>UN Nummer</mat-label><input matInput formControlName="adr_Un_Nr" /></mat-form-field>
         <mat-form-field appearance="fill" class="full-width"><mat-label>Cargo Name</mat-label><input matInput formControlName="adr_Cargo_Name" /></mat-form-field>
         <mat-form-field appearance="fill" class="full-width"><mat-label>Transport Hazard Class</mat-label><input matInput formControlName="adr_TransportHazard_Class" /></mat-form-field>
-        <mat-form-field appearance="fill" class="full-width"><mat-label>Packaging Group</mat-label><input matInput formControlName="adr_Packing_Group" /></mat-form-field>
+        <mat-form-field appearance="fill" class="full-width"><mat-label>Packaging Group</mat-label><input matInput formControlName="adr_Packaging_Group" /></mat-form-field>
         <mat-form-field appearance="fill" class="full-width"><mat-label>Environment Hazards</mat-label><input matInput formControlName="adr_Environment_Hazards" /></mat-form-field>
         <mat-form-field appearance="fill" class="full-width"><mat-label>Extra Info</mat-label><input matInput formControlName="adr_ExtraInfo" /></mat-form-field>
         <mat-form-field appearance="fill" class="full-width"><mat-label>Tunnelcode</mat-label><input matInput formControlName="extraInfo_TunnelCode" /></mat-form-field>
@@ -57,7 +57,7 @@
         <mat-form-field appearance="fill" class="full-width"><mat-label>UN Nummer</mat-label><input matInput formControlName="imdg_Un_Nr" /></mat-form-field>
         <mat-form-field appearance="fill" class="full-width"><mat-label>Cargo Name</mat-label><input matInput formControlName="imdg_Cargo_Name" /></mat-form-field>
         <mat-form-field appearance="fill" class="full-width"><mat-label>Transport Hazard Class</mat-label><input matInput formControlName="imdg_TransportHazard_Class" /></mat-form-field>
-        <mat-form-field appearance="fill" class="full-width"><mat-label>Packaging Group</mat-label><input matInput formControlName="imdg_Packing_Group" /></mat-form-field>
+        <mat-form-field appearance="fill" class="full-width"><mat-label>Packaging Group</mat-label><input matInput formControlName="imdg_Packaging_Group" /></mat-form-field>
         <mat-form-field appearance="fill" class="full-width"><mat-label>Environment Hazards</mat-label><input matInput formControlName="imdg_Environment_Hazards" /></mat-form-field>
         <mat-form-field appearance="fill" class="full-width"><mat-label>Extra Info</mat-label><input matInput formControlName="imdg_ExtraInfo" /></mat-form-field>
       </div>

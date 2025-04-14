@@ -9,8 +9,9 @@
   <app-auto-open-menu>
     <button mat-button trigger>Vibs</button>
     <ng-container content>
-      <button mat-menu-item [routerLink]="'/upload-msds'">Upload Vib</button>
-      <button mat-menu-item [routerLink]="'/manage-msds'">Manage Vib</button>
+      <button mat-menu-item [routerLink]="'/upload-msds'">Upload SQLserver Vib</button>
+      <button mat-menu-item [routerLink]="'/manage-msds'">Manage SQLserver Vib</button>
+      <button mat-menu-item [routerLink]="'/manage-euravib'">Manage DB2 Euravib_import</button>
     </ng-container>
   </app-auto-open-menu>
 
@@ -22,12 +23,7 @@
     </ng-container>
   </app-auto-open-menu>
 
-  <app-auto-open-menu>
-    <button mat-button trigger>Db2-Euravib</button>
-    <ng-container content>
-      <button mat-menu-item [routerLink]="'/manage-euravib'">Manage Euravib</button>
-    </ng-container>
-  </app-auto-open-menu>
+
 
   <!-- Base data Menu -->
   <app-auto-open-menu>

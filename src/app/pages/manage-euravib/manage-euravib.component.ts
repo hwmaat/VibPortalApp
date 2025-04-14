@@ -72,7 +72,7 @@ export class ManageEuravibComponent implements OnInit {
       status: this.statusFilter
     };
 
-    this.api.postPaged<VibPagedResult<EuravibImport>>('euravib/paged', body).subscribe({
+    this.api.postPaged<VibPagedResult<EuravibImport>>('Db2euravib/paged', body).subscribe({
       next: result => {
         if (result.status === 'success') {
           console.log('manage-euravib.component ==> procname', result);

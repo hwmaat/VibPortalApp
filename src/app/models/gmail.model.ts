@@ -19,3 +19,13 @@ export interface GMessage {
     message: string | null;
   }
   
+  export interface B2BProcessResult {
+    gmailId: string;
+    success: boolean;
+    errorMessage?: string;
+    status?: string;
+  }
+
+  export interface GMessageView extends GMessage {
+    isFirstOfGroup: boolean;
+  }

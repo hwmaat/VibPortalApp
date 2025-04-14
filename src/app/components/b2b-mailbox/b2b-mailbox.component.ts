@@ -1,96 +1,142 @@
+import { Component } from '@angular/core';
+import { GMessage, B2BProcessResult } from '../../models/gmail.model';
+import { ApiService } from '../../services/ApiService.service';
+import { PageEvent } from '@angular/material/paginator';
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatTableModule } from '@angular/material/table';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { FormBuilder, FormGroup } from '@angular/forms';
-
-import { ApiService } from '../../services/ApiService.service';
-import { GMessage, MailPagedResult } from '../../models/gmail.model';
 
 @Component({
   selector: 'app-b2b-mailbox',
+  templateUrl: './b2b-mailbox.component.html',
+  styleUrls: ['./b2b-mailbox.component.scss'],
   standalone: true,
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule,
-    MatTableModule,
-    MatIconModule,
-    MatButtonModule,
+    MatProgressBarModule,
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    MatButtonModule,
+    MatIconModule,
+    MatTableModule,
     MatPaginatorModule
-  ],
-  templateUrl: './b2b-mailbox.component.html',
-  styleUrls: ['./b2b-mailbox.component.scss']
+  ]
 })
 export class B2bMailboxComponent {
-  private api = inject(ApiService);
-  private fb = inject(FormBuilder);
-
-  form!: FormGroup;
-  displayedColumns: string[] = ['date', 'from', 'to', 'subject', 'attachments', 'status', 'gmailId', 'edit'];
   messages: GMessage[] = [];
-  totalCount = 0;
+  viewMessages: any[] = [];
+
   page = 1;
   pageSize = 10;
+  totalCount = 0;
 
-  ngOnInit(): void {
-    this.form = this.fb.group({
-      search: [''],
-      status: ['']
-    });
+  loading = false;
+  filterText = '';
+  statusFilter = '';
+  statusOptions = ['new','seen', 'no-data', 'failed', 'processed'];
 
+  displayedColumns: string[] = ['attachments', 'status', 'edit'];
+
+  constructor(private api: ApiService) {
     this.loadMessages();
   }
 
   loadMessages(): void {
-    const search = this.form.get('search')?.value?.trim();
-    const status = this.form.get('status')?.value;
-  
-    const params = new URLSearchParams({
-      page: this.page.toString(),
-      pageSize: this.pageSize.toString(),
-    });
-  
-    if (search) params.set('search', search);
-    if (status) params.set('status', status);
-  
-    this.api.get<MailPagedResult<GMessage>>(`gmail/messages?${params.toString()}`).subscribe({
-      next: (res) => {
-        if (res.status === 'failed') {
-          alert(`Error loading messages: ${res.message}`);
-          this.messages = [];
-          this.totalCount = 0;
-        } else {
-          this.messages = res.data;
-          this.totalCount = res.totalCount;
-        }
-      },
-      error: (err) => {
-        alert('Unexpected error loading messages.');
-        this.messages = [];
-        this.totalCount = 0;
-      }
-    });
-  }
-  
-  
+    this.loading = true;
+    this.api.get<any>(`b2bgmail/b2bmessages?page=${this.page}&pageSize=${this.pageSize}&search=${this.filterText}&status=${this.statusFilter}`)
+      .subscribe({
+        next: res => {
+          this.messages = res.data ?? [];
+          this.totalCount = res.totalCount ?? 0;
+          this.page = res.pageNumber ?? this.page;
+          this.pageSize = res.pageSize ?? this.pageSize;
 
-  onPageChange(event: any): void {
+          this.viewMessages = [];
+
+          this.messages.forEach((msg, index, arr) => {
+            const isFirst = index === 0 || msg.gmailId !== arr[index - 1].gmailId;
+
+            if (isFirst) {
+              this.viewMessages.push({
+                ...msg,
+                isGroupHeader: true
+              });
+            }
+
+            this.viewMessages.push({
+              ...msg,
+              isGroupHeader: false
+            });
+          });
+
+          this.loading = false;
+        },
+        error: err => {
+          this.loading = false;
+        }
+      });
+  }
+
+  onPageChange(event: PageEvent): void {
     this.page = event.pageIndex + 1;
     this.pageSize = event.pageSize;
     this.loadMessages();
   }
 
-  edit(row: GMessage): void {
-    // Leave empty for now
+  onSearch(): void {
+    this.page = 1;
+    this.loadMessages();
   }
+
+  resetFilters(): void {
+    this.filterText = '';
+    this.statusFilter = '';
+    this.page = 1;
+    this.loadMessages();
+  }
+  
+  edit(row: GMessage): void {
+
+  }
+  process(row: GMessage): void {
+
+    console.log('b2b-mailbox.edit ==> row', row);
+
+    if (!row.attachments || row.attachments.trim() === '') {
+      alert('No attachments to process.');
+      return;
+    }
+
+    const supplierCode = 'aludium';
+    this.api.post<B2BProcessResult>('b2bgmail/process-b2bemail', {
+      messageId: row.gmailId,
+      supplierCode: supplierCode,
+      attachmentName: row.attachments
+    }).subscribe({
+      next: (res) => {
+        if (!res.success) {
+          alert(`❌ Processing failed: ${res.errorMessage}`);
+        } else {
+          alert(`✅ Email processed (Status: ${res.status})`);
+          this.loadMessages();
+        }
+      },
+      error: () => {
+        alert('🚨 Unexpected error while processing email.');
+      }
+    });
+  }
+
+  // Used by mat-table to render group headers
+  isGroupHeader = (_: number, row: any) => row.isGroupHeader === true;
+  isAttachmentRow = (_: number, row: any) => row.isGroupHeader === false;
 }

@@ -70,13 +70,13 @@ export class EditEuravibComponent implements OnInit {
       adr_Un_Nr: this.fb.control(''),
       adr_Cargo_Name: this.fb.control(''),
       adr_TransportHazard_Class: this.fb.control(''),
-      adr_Packing_Group: this.fb.control(''),
+      adr_Packaging_Group: this.fb.control(''),
       adr_Environment_Hazards: this.fb.control(''),
       adr_ExtraInfo: this.fb.control(''),
       imdg_Un_Nr: this.fb.control(''),
       imdg_Cargo_Name: this.fb.control(''),
       imdg_TransportHazard_Class: this.fb.control(''),
-      imdg_Packing_Group: this.fb.control(''),
+      imdg_Packaging_Group: this.fb.control(''),
       imdg_Environment_Hazards: this.fb.control(''),
       imdg_ExtraInfo: this.fb.control(''),
       extraInfo_TunnelCode: this.fb.control(''),
@@ -86,7 +86,7 @@ export class EditEuravibComponent implements OnInit {
     });
 
 
-    this.api.get<EuravibImport>(`euravib/${this.id}`).subscribe(record => {
+    this.api.get<EuravibImport>(`Db2euravib/${this.id}`).subscribe(record => {
       this.editForm.patchValue(record);
     });
  
@@ -96,7 +96,7 @@ export class EditEuravibComponent implements OnInit {
 
   save(): void {
     if (this.editForm.valid) {
-      this.api.put(`euravib/${this.id}`, this.editForm.value).subscribe(() => {
+      this.api.put(`Db2euravib/${this.id}`, this.editForm.value).subscribe(() => {
         this.router.navigate(['/manage-euravib']);
       });
     }
